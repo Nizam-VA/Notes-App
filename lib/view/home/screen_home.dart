@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:posts_api/controller/blocs/post/bloc/post_bloc.dart';
 import 'package:posts_api/view/add_post/screen_add_post.dart';
+import 'package:posts_api/view/home/widgets/delete_student.dart';
 import 'package:posts_api/view/home/widgets/floating_button.dart';
 import 'package:posts_api/view/view_post/screen_view_post.dart';
 
@@ -33,7 +34,7 @@ class ScreenHome extends StatelessWidget {
           if (state.status) {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               content: Text(
-                'data added successfully',
+                'operation done successfully',
                 style: TextStyle(color: Colors.white),
               ),
               backgroundColor: Colors.green,
@@ -84,8 +85,7 @@ class ScreenHome extends StatelessWidget {
                         ),
                         IconButton(
                           onPressed: () async {
-                            context.read<PostBloc>().add(
-                                DeletePostEvent(id: state.postList[index].id));
+                            deleteStudent(context, state.postList[index].id);
                           },
                           icon: const Icon(Icons.delete, color: Colors.black),
                         )

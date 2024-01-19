@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.purple,
+          useMaterial3: false,
         ),
         home: const ScreenHome(),
       ),

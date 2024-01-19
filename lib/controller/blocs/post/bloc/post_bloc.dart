@@ -32,9 +32,17 @@ class PostBloc extends Bloc<PostEvent, PostState> {
 
     on<DeletePostEvent>((event, emit) async {
       emit(PostState(postList: [], isLoading: true, isDeleted: true));
-      await api.deletePost(event.id);
+      final bool success = await api.deletePost(event.id);
+      print(success);
       final List<PostModel> posts = await api.fetchAllPost();
-      emit(PostState(postList: posts, isLoading: false, isDeleted: false));
+      emit(
+        PostState(
+          postList: posts,
+          isLoading: false,
+          isDeleted: false,
+          status: success,
+        ),
+      );
     });
   }
 }
